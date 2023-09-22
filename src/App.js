@@ -1,5 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import { createStore } from 'redux';
+
+const initialMovies = {
+  movies: [
+    'Dune', 'Across the Spiderverse', 'Oppenheimer'
+  ]
+}
+
+function movies(state = initialMovies, action) {
+  switch (action.type) {
+    default:
+      return state
+  }
+}
+
+const movieStore = createStore(movies);
+window.store = movieStore;
 
 function App() {
   return (
