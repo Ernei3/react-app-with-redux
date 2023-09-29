@@ -3,7 +3,7 @@ import './App.css';
 import { createStore } from 'redux';
 
 const initialMovies = {
-  listName: 'favorite',
+  listName: 'Favorite',
   movies: [
     'Dune', 'Across the Spiderverse', 'Oppenheimer'
   ]
@@ -48,20 +48,10 @@ window.store = movieStore;
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{movieStore.getState().listName} movies</h1>
+      {
+        movieStore.getState().movies.map((movie) => <div key={movie}>{movie}</div>)
+      }
     </div>
   );
 }
