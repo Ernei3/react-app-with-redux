@@ -3,6 +3,7 @@ import './App.css';
 import { createStore } from 'redux';
 
 const initialMovies = {
+  listName: 'favorite',
   movies: [
     'Dune', 'Across the Spiderverse', 'Oppenheimer'
   ]
@@ -10,6 +11,32 @@ const initialMovies = {
 
 function movies(state = initialMovies, action) {
   switch (action.type) {
+    case 'ADD':
+      return {
+        ...state, movies: [...state.movies, action.movie]
+      }
+    case 'UPDATE':
+      const index = state.movies.indexOf(action.movieName);
+
+      if( index === -1 ){
+        console.error("The movie wasn't found.")
+        return state;
+      }
+
+      let tmp = [...state.movies];
+      tmp[index] = action.newMovieName;
+
+      return {
+        ...state,
+        movies: tmp
+      }
+    case 'DELETE':
+      return {
+        ...state,
+        movies: state.movies.filter(( movie ) => movie !== action.movieName)
+      }
+    case 'DELETE_ALL':
+      return {...state, movies: []};
     default:
       return state
   }
